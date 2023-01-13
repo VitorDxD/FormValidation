@@ -10,9 +10,17 @@ class ValidaFormulario {
                teste(e)
             }
         })
+
         teste = this.formulario.addEventListener("submit", e => {
             e.preventDefault()
             const camposValidos = this.isValid()
+
+            if (camposValidos === true) {
+                alert('Formulário enviado!')
+                for (let campo of this.formulario.querySelectorAll('input')){
+                    campo.value = ''
+                }
+            }
         })
     }
 
@@ -68,6 +76,7 @@ class ValidaFormulario {
             }
         }
 
+        return valid
     }
 
     criaErro(campo, msg) {
@@ -76,7 +85,6 @@ class ValidaFormulario {
         div.classList.add('error-text')
         campo.insertAdjacentElement('afterend', div)
     }
-
 }
 
 const valida = new ValidaFormulario()
